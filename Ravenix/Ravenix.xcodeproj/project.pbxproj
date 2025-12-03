@@ -6,17 +6,26 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		CE1027542EE012DF0012F7D5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE10274E2EE012DF0012F7D5 /* ContentView.swift */; };
+		CE1027552EE012DF0012F7D5 /* RavenixApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE10274F2EE012DF0012F7D5 /* RavenixApp.swift */; };
+		CE1027562EE012DF0012F7D5 /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1027512EE012DF0012F7D5 /* Cell.swift */; };
+		CE1027572EE012DF0012F7D5 /* VisualObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1027522EE012DF0012F7D5 /* VisualObject.swift */; };
+		CE1027582EE012DF0012F7D5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE10274D2EE012DF0012F7D5 /* Assets.xcassets */; };
+		CE10275C2EE0156A0012F7D5 /* MatrixView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE10275B2EE014980012F7D5 /* MatrixView.swift */; };
+		CE10275D2EE015700012F7D5 /* ShapeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE10275A2EE014660012F7D5 /* ShapeView.swift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		CE10272C2EE00A440012F7D5 /* Ravenix.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ravenix.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE10274D2EE012DF0012F7D5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		CE10274E2EE012DF0012F7D5 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		CE10274F2EE012DF0012F7D5 /* RavenixApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RavenixApp.swift; sourceTree = "<group>"; };
+		CE1027512EE012DF0012F7D5 /* Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cell.swift; sourceTree = "<group>"; };
+		CE1027522EE012DF0012F7D5 /* VisualObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualObject.swift; sourceTree = "<group>"; };
+		CE10275A2EE014660012F7D5 /* ShapeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShapeView.swift; sourceTree = "<group>"; };
+		CE10275B2EE014980012F7D5 /* MatrixView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatrixView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
-
-/* Begin PBXFileSystemSynchronizedRootGroup section */
-		CE10272E2EE00A440012F7D5 /* Ravenix */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = Ravenix;
-			sourceTree = "<group>";
-		};
-/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		CE1027292EE00A440012F7D5 /* Frameworks */ = {
@@ -32,7 +41,8 @@
 		CE1027232EE00A440012F7D5 = {
 			isa = PBXGroup;
 			children = (
-				CE10272E2EE00A440012F7D5 /* Ravenix */,
+				CE1027592EE014440012F7D5 /* UI */,
+				CE1027532EE012DF0012F7D5 /* Models */,
 				CE10272D2EE00A440012F7D5 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -43,6 +53,35 @@
 				CE10272C2EE00A440012F7D5 /* Ravenix.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		CE1027502EE012DF0012F7D5 /* Ravenix */ = {
+			isa = PBXGroup;
+			children = (
+				CE10274D2EE012DF0012F7D5 /* Assets.xcassets */,
+				CE10274E2EE012DF0012F7D5 /* ContentView.swift */,
+				CE10274F2EE012DF0012F7D5 /* RavenixApp.swift */,
+			);
+			path = Ravenix;
+			sourceTree = "<group>";
+		};
+		CE1027532EE012DF0012F7D5 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				CE1027502EE012DF0012F7D5 /* Ravenix */,
+				CE1027512EE012DF0012F7D5 /* Cell.swift */,
+				CE1027522EE012DF0012F7D5 /* VisualObject.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		CE1027592EE014440012F7D5 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				CE10275B2EE014980012F7D5 /* MatrixView.swift */,
+				CE10275A2EE014660012F7D5 /* ShapeView.swift */,
+			);
+			path = UI;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -59,9 +98,6 @@
 			buildRules = (
 			);
 			dependencies = (
-			);
-			fileSystemSynchronizedGroups = (
-				CE10272E2EE00A440012F7D5 /* Ravenix */,
 			);
 			name = Ravenix;
 			packageProductDependencies = (
@@ -109,6 +145,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE1027582EE012DF0012F7D5 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -119,6 +156,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE10275D2EE015700012F7D5 /* ShapeView.swift in Sources */,
+				CE10275C2EE0156A0012F7D5 /* MatrixView.swift in Sources */,
+				CE1027542EE012DF0012F7D5 /* ContentView.swift in Sources */,
+				CE1027552EE012DF0012F7D5 /* RavenixApp.swift in Sources */,
+				CE1027562EE012DF0012F7D5 /* Cell.swift in Sources */,
+				CE1027572EE012DF0012F7D5 /* VisualObject.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
