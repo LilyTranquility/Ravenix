@@ -29,20 +29,38 @@ enum SizeStep: Int, CaseIterable {
 
 // MARK: - Symbolic objects & grid
 
-/// One symbolic object in a cell.
+/// One symbolic object in a cell (shape/color/size with orientation and optional layering).
 struct SymbolicObject: Equatable {
     var shape: ShapeSymbol
     var color: ColorSymbol
     var sizeStep: SizeStep
+    var rotation: Rotation
+    var flip: Flip
+    /// Layer or ring index for multi-layer icons (nil when unused).
+    var ringIndex: Int?
 }
 
 /// Backwards-compatible initializer so older code that only
 /// passes shape + color still compiles (defaults to medium size).
 extension SymbolicObject {
     init(shape: ShapeSymbol, color: ColorSymbol) {
+        self.init(shape: shape, color: color, sizeStep: .medium)
+    }
+
+    init(
+        shape: ShapeSymbol,
+        color: ColorSymbol,
+        sizeStep: SizeStep,
+        rotation: Rotation = .degrees0,
+        flip: Flip = .none,
+        ringIndex: Int? = nil
+    ) {
         self.shape = shape
         self.color = color
-        self.sizeStep = .medium
+        self.sizeStep = sizeStep
+        self.rotation = rotation
+        self.flip = flip
+        self.ringIndex = ringIndex
     }
 }
 
@@ -97,7 +115,11 @@ extension SymbolicObject {
     func toVisual() -> VisualObject {
         VisualObject(
             shape: shape.visualShape,
-            color: color.visualColor
+            color: color.visualColor,
+            size: sizeStep.scale,
+            rotation: rotation,
+            flip: flip,
+            ringIndex: ringIndex
         )
     }
 }
