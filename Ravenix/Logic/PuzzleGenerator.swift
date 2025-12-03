@@ -1,6 +1,13 @@
 import Foundation
 
 // One full Ravenix puzzle: grid + answer options.
+enum TransformPattern {
+    case none
+    case rotateAcrossRow
+    case rotateAcrossColumn
+    case flipAcrossRow
+}
+
 struct Puzzle {
     /// 3×3 grid with one nil hole.
     let grid: [[Cell?]]
@@ -19,14 +26,15 @@ struct Puzzle {
 struct PuzzleGenerator {
 
     // Public entry point – uses SystemRandomNumberGenerator by default.
-    static func generate(difficulty: Difficulty) -> Puzzle {
+    static func generate(difficulty: Difficulty, transformPattern: TransformPattern = .none) -> Puzzle {
         var rng = SystemRandomNumberGenerator()
-        return generate(difficulty: difficulty, rng: &rng)
+        return generate(difficulty: difficulty, transformPattern: transformPattern, rng: &rng)
     }
 
     // Core generator with injectable RNG (handy for tests later).
     static func generate<R: RandomNumberGenerator>(
         difficulty: Difficulty,
+        transformPattern: TransformPattern = .none,
         rng: inout R
     ) -> Puzzle {
 
@@ -53,9 +61,13 @@ struct PuzzleGenerator {
                 // Diagonal-ish size pattern
                 let size  = sizeCycle[(row + col) % sizeCycle.count]
 
-                let obj = SymbolicObject(shape: shape,
+                var obj = SymbolicObject(shape: shape,
                                          color: color,
                                          sizeStep: size)
+                obj = applyTransformPattern(obj,
+                                            row: row,
+                                            col: col,
+                                            pattern: transformPattern)
                 symbolicGrid[row][col] = SymbolicCell(objects: [obj])
             }
         }
@@ -140,5 +152,30 @@ struct PuzzleGenerator {
             holeRow: holeRow,
             holeCol: holeCol
         )
+    }
+
+    private static func applyTransformPattern(
+        _ obj: SymbolicObject,
+        row: Int,
+        col: Int,
+        pattern: TransformPattern
+    ) -> SymbolicObject {
+        switch pattern {
+        case .none:
+            return obj
+        case .rotateAcrossRow:
+            return obj.applyingRepeated(.rotate90, count: col)
+        case .rotateAcrossColumn:
+            return obj.applyingRepeated(.rotate90, count: row)
+        case .flipAcrossRow:
+            switch col {
+            case 1:
+                return obj.applying(.flipHorizontal)
+            case 2:
+                return obj.applying(.flipVertical)
+            default:
+                return obj
+            }
+        }
     }
 }

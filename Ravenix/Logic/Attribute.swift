@@ -27,6 +27,52 @@ enum SizeStep: Int, CaseIterable {
     case large
 }
 
+/// Discrete 90-degree rotation states for symbolic and visual objects.
+enum Rotation: Int, CaseIterable {
+    case deg0 = 0
+    case deg90 = 90
+    case deg180 = 180
+    case deg270 = 270
+
+    /// Combine two rotations, wrapping around 360°.
+    func rotated(by other: Rotation) -> Rotation {
+        let total = (self.rawValue + other.rawValue) % 360
+        return Rotation(rawValue: total) ?? .deg0
+    }
+}
+
+/// Supported flip states.
+enum FlipState: CaseIterable {
+    case none
+    case horizontal
+    case vertical
+
+    /// Apply a new flip transformation on top of the current state.
+    func applying(_ newFlip: FlipState) -> FlipState {
+        switch (self, newFlip) {
+        case (_, .none):
+            return self
+        case (.none, _):
+            return newFlip
+        case let (current, incoming) where current == incoming:
+            // Double-flip cancels out.
+            return .none
+        default:
+            // Mixing horizontal + vertical behaves like toggling to the incoming one.
+            return newFlip
+        }
+    }
+}
+
+/// Basic transformation operations that can be applied to symbolic objects.
+enum Transformation: CaseIterable {
+    case rotate90
+    case rotate180
+    case rotate270
+    case flipHorizontal
+    case flipVertical
+}
+
 // MARK: - Symbolic objects & grid
 
 /// One symbolic object in a cell.
@@ -34,6 +80,9 @@ struct SymbolicObject: Equatable {
     var shape: ShapeSymbol
     var color: ColorSymbol
     var sizeStep: SizeStep
+    var rotation: Rotation = .deg0
+    var flip: FlipState = .none
+    var layerIndex: Int? = nil
 }
 
 /// Backwards-compatible initializer so older code that only
@@ -43,6 +92,38 @@ extension SymbolicObject {
         self.shape = shape
         self.color = color
         self.sizeStep = .medium
+        self.rotation = .deg0
+        self.flip = .none
+        self.layerIndex = nil
+    }
+
+    /// Return a copy of the object after applying the provided transformation.
+    func applying(_ t: Transformation) -> SymbolicObject {
+        var copy = self
+
+        switch t {
+        case .rotate90:
+            copy.rotation = copy.rotation.rotated(by: .deg90)
+        case .rotate180:
+            copy.rotation = copy.rotation.rotated(by: .deg180)
+        case .rotate270:
+            copy.rotation = copy.rotation.rotated(by: .deg270)
+        case .flipHorizontal:
+            copy.flip = copy.flip.applying(.horizontal)
+        case .flipVertical:
+            copy.flip = copy.flip.applying(.vertical)
+        }
+
+        return copy
+    }
+
+    /// Apply the same transformation repeatedly.
+    func applyingRepeated(_ t: Transformation, count: Int) -> SymbolicObject {
+        guard count > 0 else { return self }
+
+        return (0..<count).reduce(self) { current, _ in
+            current.applying(t)
+        }
     }
 }
 
@@ -97,7 +178,10 @@ extension SymbolicObject {
     func toVisual() -> VisualObject {
         VisualObject(
             shape: shape.visualShape,
-            color: color.visualColor
+            color: color.visualColor,
+            rotation: rotation,
+            flip: flip,
+            layerIndex: layerIndex
         )
     }
 }

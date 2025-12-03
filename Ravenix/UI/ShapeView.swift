@@ -5,6 +5,8 @@ struct ShapeView: View {
 
     var body: some View {
         let baseSize: CGFloat = 26
+        let scaleX: CGFloat = obj.flip == .horizontal ? -1 : 1
+        let scaleY: CGFloat = obj.flip == .vertical ? -1 : 1
 
         Group {
             switch obj.shape {
@@ -18,6 +20,8 @@ struct ShapeView: View {
         }
         .foregroundStyle(obj.color)
         .frame(width: baseSize, height: baseSize)
+        .rotationEffect(obj.rotation.angle)
+        .scaleEffect(x: scaleX, y: scaleY)
     }
 }
 

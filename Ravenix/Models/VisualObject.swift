@@ -13,6 +13,25 @@ struct VisualObject: Identifiable, Equatable {
     let id = UUID()
     var shape: ShapeType
     var color: Color
+    var rotation: Rotation = .deg0
+    var flip: FlipState = .none
+    var layerIndex: Int? = nil
+}
+
+extension VisualObject {
+    static func == (lhs: VisualObject, rhs: VisualObject) -> Bool {
+        lhs.shape == rhs.shape &&
+        lhs.color == rhs.color &&
+        lhs.rotation == rhs.rotation &&
+        lhs.flip == rhs.flip &&
+        lhs.layerIndex == rhs.layerIndex
+    }
+}
+
+extension Rotation {
+    var angle: Angle {
+        Angle(degrees: Double(rawValue))
+    }
 }
 
 /// A single grid cell (may hold 0 or more visual objects).
