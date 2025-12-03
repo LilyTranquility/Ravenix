@@ -4,6 +4,8 @@ struct ShapeView: View {
     let obj: VisualObject
 
     var body: some View {
+        let baseSize: CGFloat = 26
+
         Group {
             switch obj.shape {
             case .circle:
@@ -14,11 +16,12 @@ struct ShapeView: View {
                 Triangle()
             }
         }
-        .foregroundStyle(obj.color)        // ✅ color as a view modifier
-        .frame(width: 24 * obj.size, height: 24 * obj.size)
+        .foregroundStyle(obj.color)
+        .frame(width: baseSize, height: baseSize)
     }
 }
 
+/// Simple triangle shape
 struct Triangle: Shape {
     func path(in rect: CGRect) -> Path {
         var p = Path()

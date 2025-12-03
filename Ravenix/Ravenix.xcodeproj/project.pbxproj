@@ -9,14 +9,14 @@
 /* Begin PBXBuildFile section */
 		CE1027542EE012DF0012F7D5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE10274E2EE012DF0012F7D5 /* ContentView.swift */; };
 		CE1027552EE012DF0012F7D5 /* RavenixApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE10274F2EE012DF0012F7D5 /* RavenixApp.swift */; };
-		CE1027562EE012DF0012F7D5 /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1027512EE012DF0012F7D5 /* Cell.swift */; };
 		CE1027572EE012DF0012F7D5 /* VisualObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1027522EE012DF0012F7D5 /* VisualObject.swift */; };
 		CE1027582EE012DF0012F7D5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE10274D2EE012DF0012F7D5 /* Assets.xcassets */; };
 		CE10275C2EE0156A0012F7D5 /* MatrixView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE10275B2EE014980012F7D5 /* MatrixView.swift */; };
 		CE10275D2EE015700012F7D5 /* ShapeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE10275A2EE014660012F7D5 /* ShapeView.swift */; };
 		CE1027632EE01A880012F7D5 /* PuzzleGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1027622EE018760012F7D5 /* PuzzleGenerator.swift */; };
 		CE1027642EE01A8E0012F7D5 /* Rule.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1027612EE0186D0012F7D5 /* Rule.swift */; };
-		CE1027652EE01A920012F7D5 /* Attribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1027602EE018640012F7D5 /* Attribute.swift */; };
+		CE1027662EE0226D0012F7D5 /* Attribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1027602EE018640012F7D5 /* Attribute.swift */; };
+		CE1027682EE023C00012F7D5 /* Difficulty.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1027672EE023B60012F7D5 /* Difficulty.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +31,7 @@
 		CE1027602EE018640012F7D5 /* Attribute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Attribute.swift; sourceTree = "<group>"; };
 		CE1027612EE0186D0012F7D5 /* Rule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rule.swift; sourceTree = "<group>"; };
 		CE1027622EE018760012F7D5 /* PuzzleGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PuzzleGenerator.swift; sourceTree = "<group>"; };
+		CE1027672EE023B60012F7D5 /* Difficulty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Difficulty.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +95,7 @@
 		CE10275F2EE0184D0012F7D5 /* Logic */ = {
 			isa = PBXGroup;
 			children = (
+				CE1027672EE023B60012F7D5 /* Difficulty.swift */,
 				CE1027622EE018760012F7D5 /* PuzzleGenerator.swift */,
 				CE1027612EE0186D0012F7D5 /* Rule.swift */,
 				CE1027602EE018640012F7D5 /* Attribute.swift */,
@@ -175,12 +177,12 @@
 			files = (
 				CE10275D2EE015700012F7D5 /* ShapeView.swift in Sources */,
 				CE10275C2EE0156A0012F7D5 /* MatrixView.swift in Sources */,
+				CE1027682EE023C00012F7D5 /* Difficulty.swift in Sources */,
 				CE1027542EE012DF0012F7D5 /* ContentView.swift in Sources */,
-				CE1027652EE01A920012F7D5 /* Attribute.swift in Sources */,
+				CE1027662EE0226D0012F7D5 /* Attribute.swift in Sources */,
 				CE1027632EE01A880012F7D5 /* PuzzleGenerator.swift in Sources */,
 				CE1027552EE012DF0012F7D5 /* RavenixApp.swift in Sources */,
 				CE1027642EE01A8E0012F7D5 /* Rule.swift in Sources */,
-				CE1027562EE012DF0012F7D5 /* Cell.swift in Sources */,
 				CE1027572EE012DF0012F7D5 /* VisualObject.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

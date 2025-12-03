@@ -1,26 +1,25 @@
+//
+//  Rule.swift
+//  Ravenix
+//
+//  Minimal rule protocol placeholder.
+//  We'll add real Corvus-style rules here later.
+//
+
 import Foundation
 
-enum AttributeType {
-    case shape
-    case color
-    case size
+/// A symbolic transformation rule.
+/// Later we'll implement concrete rules (e.g. ShapeCycleRule, ColorCycleRule)
+/// that manipulate a SymbolicGrid.
+protocol Rule {
+    /// Apply this rule to a base symbolic grid and return a transformed grid.
+    func apply(to grid: SymbolicGrid) -> SymbolicGrid
 }
 
-enum TransformType {
-    case constant      // stays the same
-    case cycle         // cycles through values (mod N)
-    case progression   // increases/decreases in a step
-    case alternate     // ABAB...
-    // You can add more later (XOR, union, etc.)
-}
-
-enum Axis {
-    case row
-    case column
-}
-
-struct Rule {
-    let attribute: AttributeType
-    let transform: TransformType
-    let axis: Axis
+/// A no-op rule used as a placeholder so the app compiles.
+/// It returns the grid unchanged.
+struct IdentityRule: Rule {
+    func apply(to grid: SymbolicGrid) -> SymbolicGrid {
+        return grid
+    }
 }
